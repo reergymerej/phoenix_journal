@@ -17,6 +17,7 @@ defmodule JournalWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources "entries", EntryController
   end
 
   # Other scopes may use custom stacks.

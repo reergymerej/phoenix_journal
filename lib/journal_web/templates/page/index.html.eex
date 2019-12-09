@@ -43,3 +43,11 @@
   and the only way to keep notes is by hardcoding entries here.  Let's change
   that.
 </pre>
+
+<pre>
+  Now that we've deployed, we need CRUDness.  Generators can kickstart this for
+  us.
+  https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Html.html#content
+
+  Can I look at this stuff locally?  I don't think so, since they're tasks and not typical modules.
+</pre>
