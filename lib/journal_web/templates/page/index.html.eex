@@ -1,0 +1,45 @@
+<p>
+  This is a journal.  The purpose of this project is to learn about Phoenix.
+</p>
+
+<h3>
+  Current Abilities
+</h3>
+
+<ul>
+  <li>
+    Show a page
+  </li>
+</ul>
+
+<h3>
+  Next Ability
+</h3>
+<ul>
+  <li>
+    Crud entries
+  </li>
+</ul>
+
+<h3>
+  Entries
+</h3>
+
+<pre>
+  When creating links to other pages, you can use a helper function to return
+  the string.
+  https://hexdocs.pm/phoenix/routing.html#path-helpers
+
+  To get the routes, use mix phx.routes.
+</pre>
+
+<pre>
+  Add https://github.com/lpil/mix-test.watch for TDD.
+</pre>
+
+<pre>
+  I want to keep notes as this is built.  My local machine is dev and its data
+  is junk.  I'll have to take notes just in prod.  Right now, there is no prod
+  and the only way to keep notes is by hardcoding entries here.  Let's change
+  that.
+</pre>
