@@ -10,15 +10,15 @@
   <li>
     Show a page
   </li>
+  <li>
+    Crud entries
+  </li>
 </ul>
 
 <h3>
   Next Ability
 </h3>
 <ul>
-  <li>
-    Crud entries
-  </li>
 </ul>
 
 <h3>
@@ -49,5 +49,6 @@
   us.
   https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Html.html#content
 
-  Can I look at this stuff locally?  I don't think so, since they're tasks and not typical modules.
+  Can I look at this stuff locally?  I don't think so, since they're tasks and
+  not typical modules.
 </pre>
