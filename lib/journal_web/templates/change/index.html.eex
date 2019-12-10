@@ -11,7 +11,11 @@
   <tbody>
 <%= for change <- @changes do %>
     <tr>
-      <td><%= change.text %></td>
+      <td>
+        <div class="pre">
+          <%= change.text %>
+        </div>
+      </td>
 
       <td>
         <span><%= link "Show", to: Routes.change_path(@conn, :show, change) %></span>
