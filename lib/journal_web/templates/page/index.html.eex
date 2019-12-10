@@ -16,39 +16,19 @@
 </ul>
 
 <h3>
-  Next Ability
+  Future Abilities
 </h3>
 <ul>
+  <li>
+    Add a button to make another quick entry.
+  </li>
+  <li>
+    Change input to text area.
+  </li>
+  <li>
+    Use the same template for the header nav and the nav on the show page.
+  </li>
+  <li>
+    Separate entries from TODO items.
+  </li>
 </ul>
-
-<h3>
-  Entries
-</h3>
-
-<pre>
-  When creating links to other pages, you can use a helper function to return
-  the string.
-  https://hexdocs.pm/phoenix/routing.html#path-helpers
-
-  To get the routes, use mix phx.routes.
-</pre>
-
-<pre>
-  Add https://github.com/lpil/mix-test.watch for TDD.
-</pre>
-
-<pre>
-  I want to keep notes as this is built.  My local machine is dev and its data
-  is junk.  I'll have to take notes just in prod.  Right now, there is no prod
-  and the only way to keep notes is by hardcoding entries here.  Let's change
-  that.
-</pre>
-
-<pre>
-  Now that we've deployed, we need CRUDness.  Generators can kickstart this for
-  us.
-  https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Html.html#content
-
-  Can I look at this stuff locally?  I don't think so, since they're tasks and
-  not typical modules.
-</pre>
