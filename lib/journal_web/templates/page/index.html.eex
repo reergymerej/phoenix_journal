@@ -19,6 +19,9 @@
   <li>
     Change input to text area.
   </li>
+  <li>
+    long text entries
+  </li>
 </ul>
 
 <h3>
@@ -26,12 +29,12 @@
 </h3>
 <ul>
   <li>
+    Save new entries as you go to avoid accidental loss of info.
+  </li>
+  <li>
     Use the same template for the header nav and the nav on the show page.
   </li>
   <li>
     Separate entries from TODO items.
-  </li>
-  <li>
-    Save new entries as you go to avoid accidental loss of info.
   </li>
 </ul>
