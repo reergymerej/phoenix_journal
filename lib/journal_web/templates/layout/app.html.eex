@@ -18,6 +18,11 @@
             <li>
               <a href="<%= Routes.entry_path(@conn, :index) %>">Entries</a>
             </li>
+            <li>
+              <a href="<%= Routes.change_path(@conn, :index) %>">
+                Changes
+              </a>
+            </li>
           </ul>
         </nav>
       </section>

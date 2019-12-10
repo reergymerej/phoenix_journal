@@ -22,6 +22,9 @@
   <li>
     long text entries
   </li>
+  <li>
+    Separate entries from TODO items.
+  </li>
 </ul>
 
 <h3>
@@ -33,8 +36,5 @@
   </li>
   <li>
     Use the same template for the header nav and the nav on the show page.
-  </li>
-  <li>
-    Separate entries from TODO items.
   </li>
 </ul>

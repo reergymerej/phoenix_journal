@@ -1,0 +1,13 @@
+<h1>Show Change</h1>
+
+<ul>
+
+  <li>
+    <strong>Text:</strong>
+    <%= @change.text %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.change_path(@conn, :edit, @change) %></span>
+<span><%= link "Back", to: Routes.change_path(@conn, :index) %></span>
