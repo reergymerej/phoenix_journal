@@ -12,17 +12,13 @@
       <section class="container">
         <nav role="navigation">
           <ul>
-            <li>
-              <a href="<%= Routes.page_path(@conn, :index) %>">Home</a>
-            </li>
-            <li>
-              <a href="<%= Routes.entry_path(@conn, :index) %>">Entries</a>
-            </li>
-            <li>
-              <a href="<%= Routes.change_path(@conn, :index) %>">
-                Changes
-              </a>
-            </li>
+            <%= for %{:label => label, :href => href} <- get_nav(@conn) do %>
+              <li>
+                <a href="<%= href %>">
+                  <%= label %>
+                </a>
+              </li>
+            <% end %>
           </ul>
         </nav>
       </section>
