@@ -11,7 +11,11 @@
   <tbody>
 <%= for entry <- @entries do %>
     <tr>
-      <td><%= entry.text %></td>
+      <td>
+        <div class="pre">
+          <%= entry.text %>
+        </div>
+      </td>
 
       <td>
         <span><%= link "Show", to: Routes.entry_path(@conn, :show, entry) %></span>
