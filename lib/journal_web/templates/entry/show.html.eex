@@ -3,6 +3,11 @@
 <ul>
 
   <li>
+    <strong>Title:</strong>
+    <%= @entry.title %>
+  </li>
+
+  <li>
     <strong>Text:</strong>
     <%= @entry.text %>
   </li>

@@ -4,6 +4,7 @@ defmodule Journal.Entries.Entry do
 
   schema "entries" do
     field :text, :string
+    field :title, :string
 
     timestamps()
   end
@@ -11,7 +12,10 @@ defmodule Journal.Entries.Entry do
   @doc false
   def changeset(entry, attrs) do
     entry
-    |> cast(attrs, [:text])
+    |> cast(attrs, [
+      :text,
+      :title,
+    ])
     |> validate_required([:text])
   end
 end
