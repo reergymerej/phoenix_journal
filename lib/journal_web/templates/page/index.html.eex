@@ -2,39 +2,6 @@
   This is a journal.  The purpose of this project is to learn about Phoenix.
 </p>
 
-<h3>
-  Current Abilities
-</h3>
-
-<ul>
-  <li>
-    Show a page
-  </li>
-  <li>
-    Crud entries
-  </li>
-  <li>
-    Add a button to make another quick entry.
-  </li>
-  <li>
-    Change input to text area.
-  </li>
-  <li>
-    long text entries
-  </li>
-  <li>
-    Separate entries from TODO items.
-  </li>
-</ul>
-
-<h3>
-  Future Abilities
-</h3>
-<ul>
-  <li>
-    Save new entries as you go to avoid accidental loss of info.
-  </li>
-  <li>
-    Use the same template for the header nav and the nav on the show page.
-  </li>
-</ul>
+<p>
+  View the <a href="https://github.com/reergymerej/phoenix_journal">the source</a>.
+</p>
