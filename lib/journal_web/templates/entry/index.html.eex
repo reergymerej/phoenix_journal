@@ -3,14 +3,20 @@
 <table>
   <thead>
     <tr>
+      <th>Title</th>
       <th>Text</th>
-
       <th></th>
     </tr>
   </thead>
   <tbody>
 <%= for entry <- @entries do %>
     <tr>
+      <td>
+        <div>
+          <%= get_title(entry) %>
+        </div>
+      </td>
+
       <td>
         <div class="pre">
           <%= entry.text %>
