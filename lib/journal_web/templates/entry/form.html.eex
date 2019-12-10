@@ -6,7 +6,7 @@
   <% end %>
 
   <%= label f, :text %>
-  <%= text_input f, :text %>
+  <%= textarea f, :text %>
   <%= error_tag f, :text %>
 
   <div>

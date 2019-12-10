@@ -13,6 +13,12 @@
   <li>
     Crud entries
   </li>
+  <li>
+    Add a button to make another quick entry.
+  </li>
+  <li>
+    Change input to text area.
+  </li>
 </ul>
 
 <h3>
@@ -20,15 +26,12 @@
 </h3>
 <ul>
   <li>
-    Add a button to make another quick entry.
-  </li>
-  <li>
-    Change input to text area.
-  </li>
-  <li>
     Use the same template for the header nav and the nav on the show page.
   </li>
   <li>
     Separate entries from TODO items.
+  </li>
+  <li>
+    Save new entries as you go to avoid accidental loss of info.
   </li>
 </ul>
