@@ -9,5 +9,6 @@
 
 </ul>
 
-<span><%= link "Edit", to: Routes.change_path(@conn, :edit, @change) %></span>
-<span><%= link "Back", to: Routes.change_path(@conn, :index) %></span>
+<span><%= link "Edit", to: Routes.change_path(@conn, :edit, @change) %></span> |
+<span><%= link "Back", to: Routes.change_path(@conn, :index) %></span> |
+<span><%= link "Another", to: Routes.change_path(@conn, :new) %></span>
