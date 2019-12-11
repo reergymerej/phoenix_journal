@@ -15,6 +15,10 @@ defmodule JournalWeb.LayoutView do
         :label => "Changes",
         :href => Routes.change_path(conn, :index),
       },
+      %{
+        :label => "Users",
+        :href => Routes.session_path(conn, :new),
+      },
     ]
   end
 end
