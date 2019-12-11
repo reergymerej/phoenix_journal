@@ -18,7 +18,11 @@ defmodule Journal.Votes do
 
   """
   def list_changes do
-    Repo.all(Change)
+    query = from(
+      c in Change,
+      order_by: [desc: c.updated_at]
+    )
+    Repo.all(query)
   end
 
   @doc """
