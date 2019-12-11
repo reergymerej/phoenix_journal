@@ -6,9 +6,14 @@
   <div class="list-row">
     <div class="pre flex-1"><%= change.text %></div>
     <div class="ml-1">
-      <span><%= link "Show", to: Routes.change_path(@conn, :show, change) %></span>
-      <span><%= link "Edit", to: Routes.change_path(@conn, :edit, change) %></span>
-      <span><%= link "Delete", to: Routes.change_path(@conn, :delete, change), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      <span><%= link "Show", to: Routes.change_path(@conn, :show, change) %></span> |
+      <span><%= link "Edit", to: Routes.change_path(@conn, :edit, change) %></span> |
+      <span><%= link "Delete", to: Routes.change_path(@conn, :delete, change), method: :delete, data: [confirm: "Are you sure?"] %></span> |
+      <span>
+        <%= link "Create Entry",
+          to: Routes.entry_path(@conn, :new, "text": change.text)
+        %>
+      </span>
     </div>
   </div>
 <% end %>

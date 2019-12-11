@@ -59,4 +59,10 @@ defmodule JournalWeb.ChangeController do
     |> put_flash(:info, "Change deleted successfully.")
     |> redirect(to: Routes.change_path(conn, :index))
   end
+
+  def create_entry(conn, text) do
+    IO.puts "hello"
+    changeset = Votes.change_change(%Change{})
+    render(conn, "new.html", changeset: changeset)
+  end
 end

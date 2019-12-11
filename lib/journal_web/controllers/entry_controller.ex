@@ -9,6 +9,11 @@ defmodule JournalWeb.EntryController do
     render(conn, "index.html", entries: entries)
   end
 
+  def new(conn, %{"text" => title}) do
+    changeset = Entries.change_entry(%Entry{title: title})
+    render(conn, "new.html", changeset: changeset)
+  end
+
   def new(conn, _params) do
     changeset = Entries.change_entry(%Entry{})
     render(conn, "new.html", changeset: changeset)
