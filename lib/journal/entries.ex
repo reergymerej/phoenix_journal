@@ -18,7 +18,11 @@ defmodule Journal.Entries do
 
   """
   def list_entries do
-    Repo.all(Entry)
+    query = from(
+      e in Entry,
+      order_by: [desc: e.inserted_at]
+    )
+    Repo.all(query)
   end
 
   @doc """
