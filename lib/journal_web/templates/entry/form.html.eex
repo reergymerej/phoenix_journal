@@ -6,7 +6,7 @@
   <% end %>
 
   <%= label f, :title %>
-  <%= text_input f, :title %>
+  <%= text_input f, :title, [autofocus: true] %>
   <%= error_tag f, :title %>
 
   <%= label f, :text %>
