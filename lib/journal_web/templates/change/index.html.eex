@@ -2,30 +2,14 @@
 
 <span><%= link "New Change", to: Routes.change_path(@conn, :new) %></span>
 
-<table>
-  <thead>
-    <tr>
-      <th>Text</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
 <%= for change <- @changes do %>
-    <tr>
-      <td>
-        <div class="pre">
-          <%= change.text %>
-        </div>
-      </td>
-
-      <td>
-        <span><%= link "Show", to: Routes.change_path(@conn, :show, change) %></span>
-        <span><%= link "Edit", to: Routes.change_path(@conn, :edit, change) %></span>
-        <span><%= link "Delete", to: Routes.change_path(@conn, :delete, change), method: :delete, data: [confirm: "Are you sure?"] %></span>
-      </td>
-    </tr>
+  <div class="list-row">
+    <div class="pre flex-1"><%= change.text %></div>
+    <div class="ml-1">
+      <span><%= link "Show", to: Routes.change_path(@conn, :show, change) %></span>
+      <span><%= link "Edit", to: Routes.change_path(@conn, :edit, change) %></span>
+      <span><%= link "Delete", to: Routes.change_path(@conn, :delete, change), method: :delete, data: [confirm: "Are you sure?"] %></span>
+    </div>
+  </div>
 <% end %>
-  </tbody>
-</table>
 
