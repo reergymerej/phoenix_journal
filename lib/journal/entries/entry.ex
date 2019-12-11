@@ -16,6 +16,6 @@ defmodule Journal.Entries.Entry do
       :text,
       :title,
     ])
-    |> validate_required([:text])
+    |> validate_required([:title, :text])
   end
 end

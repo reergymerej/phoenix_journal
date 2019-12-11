@@ -15,7 +15,7 @@ defmodule JournalWeb.ChangeControllerTest do
   describe "index" do
     test "lists all changes", %{conn: conn} do
       conn = get(conn, Routes.change_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Changes"
+      assert html_response(conn, 200) =~ "Changes"
     end
   end
 

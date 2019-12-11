@@ -1,16 +1,17 @@
 <h1>Entries</h1>
 
+<span><%= link "New Entry", to: Routes.entry_path(@conn, :new) %></span>
+
 <table>
   <tbody>
     <%= for entry <- @entries do %>
       <tr>
         <td>
           <div>
-            <%= get_title(entry) %>
-          </div>
-
-          <div>
             <%= entry.inserted_at %>
+          </div>
+          <div>
+            <%= get_title(entry) %>
           </div>
         </td>
 
@@ -23,5 +24,3 @@
     <% end %>
   </tbody>
 </table>
-
-<span><%= link "New Entry", to: Routes.entry_path(@conn, :new) %></span>

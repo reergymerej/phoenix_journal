@@ -1,4 +1,6 @@
-<h1>Listing Changes</h1>
+<h1>Changes</h1>
+
+<span><%= link "New Change", to: Routes.change_path(@conn, :new) %></span>
 
 <table>
   <thead>
@@ -27,4 +29,3 @@
   </tbody>
 </table>
 
-<span><%= link "New Change", to: Routes.change_path(@conn, :new) %></span>
