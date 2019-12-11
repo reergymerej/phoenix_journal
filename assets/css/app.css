@@ -10,7 +10,7 @@
   height: 500px;
 }
 
-body, header {
+body, header, input, textarea {
   background: #2b272f;
   color: #e6c2de;
 }
