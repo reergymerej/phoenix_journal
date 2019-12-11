@@ -9,19 +9,15 @@
   </head>
   <body>
     <header>
-      <section class="container">
-        <nav role="navigation">
-          <ul>
-            <%= for %{:label => label, :href => href} <- get_nav(@conn) do %>
-              <li>
-                <a href="<%= href %>">
-                  <%= label %>
-                </a>
-              </li>
-            <% end %>
-          </ul>
-        </nav>
-      </section>
+      <ul>
+        <%= for %{:label => label, :href => href} <- get_nav(@conn) do %>
+          <li>
+            <a href="<%= href %>">
+              <%= label %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
     </header>
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>

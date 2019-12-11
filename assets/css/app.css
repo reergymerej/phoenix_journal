@@ -9,3 +9,37 @@
 .tall-textarea {
   height: 500px;
 }
+
+body, header {
+  background: #2b272f;
+  color: #e6c2de;
+}
+
+header {
+  background: #3d3942;
+  border: 0;
+}
+
+header ul {
+  list-style: none;
+  display: flex;
+}
+
+header li {
+  padding: 0 1em;
+  border-right: 1px solid #eaeaea;
+  white-space: nowrap;
+  margin: 0;
+}
+
+header li:last-of-type {
+  border-right: none;
+}
+
+a {
+  color: #c6ff6d;
+}
+
+td, th {
+  border-color: #e1e1e12e;
+}
