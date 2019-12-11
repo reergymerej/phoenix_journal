@@ -15,7 +15,7 @@ defmodule JournalWeb.EntryControllerTest do
   describe "index" do
     test "lists all entries", %{conn: conn} do
       conn = get(conn, Routes.entry_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Entries"
+      assert html_response(conn, 200) =~ "Entries"
     end
   end
 
