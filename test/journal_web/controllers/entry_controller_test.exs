@@ -3,7 +3,7 @@ defmodule JournalWeb.EntryControllerTest do
 
   alias Journal.Entries
 
-  @create_attrs %{text: "some text"}
+  @create_attrs %{text: "some text", title: "some title"}
   @update_attrs %{text: "some updated text"}
   @invalid_attrs %{text: nil}
 
