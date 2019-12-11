@@ -1,19 +1,13 @@
-<h1>Show Entry</h1>
+<h1>
+  <%= @entry.title %>
+</h1>
 
-<ul>
+<div class="pre">
+  <%= @entry.text %>
+</div>
 
-  <li>
-    <strong>Title:</strong>
-    <%= @entry.title %>
-  </li>
-
-  <li>
-    <strong>Text:</strong>
-    <%= @entry.text %>
-  </li>
-
-</ul>
-
-<span><%= link "Edit", to: Routes.entry_path(@conn, :edit, @entry) %></span> |
-<span><%= link "Back", to: Routes.entry_path(@conn, :index) %></span> |
-<span><%= link "Another", to: Routes.entry_path(@conn, :new) %></span>
+<div>
+  <span><%= link "Edit", to: Routes.entry_path(@conn, :edit, @entry) %></span> |
+  <span><%= link "Back", to: Routes.entry_path(@conn, :index) %></span> |
+  <span><%= link "Another", to: Routes.entry_path(@conn, :new) %></span>
+</div>
