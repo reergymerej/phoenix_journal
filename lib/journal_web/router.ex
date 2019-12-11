@@ -19,6 +19,7 @@ defmodule JournalWeb.Router do
     get "/", PageController, :index
     resources "/entries", EntryController
     resources "/changes", ChangeController
+    resources "/users", UserController
   end
 
   # Other scopes may use custom stacks.
