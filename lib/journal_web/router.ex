@@ -7,6 +7,7 @@ defmodule JournalWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :fetch_user
   end
 
   pipeline :api do
@@ -30,6 +31,15 @@ defmodule JournalWeb.Router do
         |> Phoenix.Controller.put_flash(:error, "login first")
         |> Phoenix.Controller.redirect(to: "/")
         |> halt()
+      user_id ->
+        assign(conn, :current_user, Journal.Accounts.get_user!(user_id))
+    end
+  end
+
+  defp fetch_user(conn, _) do
+    case get_session(conn, :user_id) do
+      nil ->
+        assign(conn, :current_user, nil)
       user_id ->
         assign(conn, :current_user, Journal.Accounts.get_user!(user_id))
     end

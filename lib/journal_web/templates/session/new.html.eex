@@ -1,11 +1,13 @@
-Hi
-
-<%= form_for @conn, Routes.session_path(@conn, :create), [method: :post, as: :user], fn f -> %>
-  <%= text_input f, :email, placeholder: "email" %>
-  <%= password_input f, :password, placeholder: "password" %>
-  <%= submit "login" %>
+<%= if !has_user(@conn) do %>
+  <%= form_for @conn, Routes.session_path(@conn, :create), [method: :post, as: :user], fn f -> %>
+    <%= text_input f, :email, placeholder: "email" %>
+    <%= password_input f, :password, placeholder: "password" %>
+    <%= submit "login" %>
+  <% end %>
 <% end %>
 
-<%= form_for @conn, Routes.session_path(@conn, :delete), [method: :delete, as: :user], fn _ -> %>
-  <%= submit "logout" %>
+<%= if has_user(@conn) do %>
+  <%= form_for @conn, Routes.session_path(@conn, :delete), [method: :delete, as: :user], fn _ -> %>
+    <%= submit "logout" %>
+  <% end %>
 <% end %>

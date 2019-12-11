@@ -16,7 +16,7 @@ defmodule JournalWeb.LayoutView do
         :href => Routes.change_path(conn, :index),
       },
       %{
-        :label => "Users",
+        :label => "Login/Logout",
         :href => Routes.session_path(conn, :new),
       },
     ]
