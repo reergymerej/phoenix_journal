@@ -6,7 +6,17 @@ defmodule JournalWeb.QuestionController do
 
   def index(conn, _params) do
     questions = QA.list_questions()
+                |> add_answered()
     render(conn, "index.html", questions: questions)
+  end
+
+  defp add_answered(list) do
+    list
+    |> Enum.map(&add_answered_flag/1)
+  end
+
+  defp add_answered_flag(question) do
+    Map.put(question, :answered, question.answer != nil)
   end
 
   def new(conn, _params) do

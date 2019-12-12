@@ -1,17 +1,17 @@
 <h1>Listing Questions</h1>
 
 <table>
-  <thead>
-    <tr>
-      <th>Text</th>
-
-      <th></th>
-    </tr>
-  </thead>
   <tbody>
 <%= for question <- @questions do %>
     <tr>
-      <td><%= question.text %></td>
+      <td>
+        <%= if question.answered do %>
+          <i>
+            answered
+          </i> -
+        <% end %>
+        <%= question.text %>
+      </td>
 
       <td>
         <span><%= link "Show", to: Routes.question_path(@conn, :show, question) %></span>
