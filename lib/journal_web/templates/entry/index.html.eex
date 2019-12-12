@@ -17,10 +17,6 @@
           </div>
         </a>
       </div>
-      <div>
-        <%= link "Edit", to: Routes.entry_path(@conn, :edit, entry) %> |
-        <%= link "Delete", to: Routes.entry_path(@conn, :delete, entry), method: :delete, data: [confirm: "Are you sure?"] %>
-      </div>
     </div>
   <% end %>
 </div>
