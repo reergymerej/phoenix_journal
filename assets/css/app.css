@@ -53,10 +53,18 @@ td, th, .list-row {
   border-color: #e1e1e12e;
 }
 
+.flex {
+  display: flex;
+}
+
 .list-row {
   display: flex;
   border-bottom: 1px solid #e1e1e12e;
   padding: 1em;
+}
+
+.dark-bg {
+  background: #3d3942;
 }
 
 .list-row:last-of-type {

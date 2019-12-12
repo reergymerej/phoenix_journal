@@ -6,7 +6,10 @@ defmodule JournalWeb.ChangeController do
 
   def index(conn, _params) do
     changes = Votes.list_changes()
-    render(conn, "index.html", changes: changes)
+    render(conn, "index.html",
+      changes: changes,
+      count: length changes
+    )
   end
 
   def new(conn, _params) do

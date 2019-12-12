@@ -1,6 +1,12 @@
 <h1>Changes</h1>
 
-<span><%= link "New Change", to: Routes.change_path(@conn, :new) %></span>
+<div class="list-row dark-bg">
+  <div class="flex-1">
+    There are <%= @count %> things to do.
+  </div>
+
+  <span><%= link "New Change", to: Routes.change_path(@conn, :new) %></span>
+</div>
 
 <%= for change <- @changes do %>
   <div class="list-row">
