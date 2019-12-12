@@ -10,9 +10,8 @@
   <%= error_tag f, :text %>
 
   <%= label f, :answer %>
-  <%= text_input f, :answer %>
+  <%= textarea f, :answer, class: "tall-textarea" %>
   <%= error_tag f, :answer %>
-
 
   <div>
     <%= submit "Save" %>

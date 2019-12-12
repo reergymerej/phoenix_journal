@@ -1,16 +1,12 @@
+<h2>
+  <%= @question.text %>
+</h2>
+
 <div>
   <span><%= link "Edit", to: Routes.question_path(@conn, :edit, @question) %></span> |
   <span><%= link "Back", to: Routes.question_path(@conn, :index) %></span>
 </div>
 
-<h2>
-  <%= @question.text %>
-</h2>
-
-<ul>
-
-  <li>
-    <%= @question.answer %>
-  </li>
-
-</ul>
+<div class="pre">
+  <%= @question.answer %>
+</div>
