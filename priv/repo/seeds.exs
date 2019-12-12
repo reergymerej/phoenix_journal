@@ -12,6 +12,8 @@
 
 alias Journal.Repo
 alias Journal.Entries.Entry
+alias Journal.Accounts.User
+alias Journal.Accounts.Credential
 
 attrs = %{
   title: "Entry #1",
@@ -50,3 +52,14 @@ alias Journal.Votes.Change
 %Change{}
   |> Change.changeset(%{text: "Do the dang thing again."})
   |> Repo.insert!()
+
+%User{}
+|> User.changeset(%{
+  name: "Mr. Dev",
+  username: "Deveroo",
+  credential: %{
+    email: "asdf@asdf.com",
+  },
+})
+|> Ecto.Changeset.cast_assoc(:credential, with: &Credential.changeset/2)
+|> Repo.insert!()
