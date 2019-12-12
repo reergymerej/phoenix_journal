@@ -6,8 +6,17 @@
   white-space: pre-wrap;
 }
 
+.mono {
+  font-family: monospace;
+}
+
 .tall-textarea {
   height: 500px;
+  font-size: inherit;
+}
+
+body {
+  font-size: 15px;
 }
 
 body, header, input, textarea {
