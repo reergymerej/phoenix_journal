@@ -4,6 +4,7 @@ defmodule Journal.QA.Question do
 
   schema "questions" do
     field :text, :string
+    field :answer, :string
 
     timestamps()
   end
@@ -11,7 +12,7 @@ defmodule Journal.QA.Question do
   @doc false
   def changeset(question, attrs) do
     question
-    |> cast(attrs, [:text])
+    |> cast(attrs, [:text, :answer])
     |> validate_required([:text])
   end
 end
