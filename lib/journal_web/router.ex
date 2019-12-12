@@ -22,6 +22,7 @@ defmodule JournalWeb.Router do
     resources "/changes", ChangeController
     resources "/users", UserController
     resources "/sessions", SessionController, only: [:new, :create, :delete], singleton: true
+    resources "/questions", QuestionController
   end
 
   defp authenticate_user(conn, _) do
