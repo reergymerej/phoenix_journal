@@ -2,25 +2,25 @@
 
 <span><%= link "New Entry", to: Routes.entry_path(@conn, :new) %></span>
 
-<table>
-  <tbody>
-    <%= for entry <- @entries do %>
-      <tr>
-        <td>
-          <div>
-            <%= entry.inserted_at %>
-          </div>
+<div>
+  <%= for entry <- @entries do %>
+    <div class="list-row">
+      <div class="flex-1 hidden-links">
+        <a href="<%= Routes.entry_path(@conn, :show, entry) %>">
+          <small>
+            <strong>
+              <%= entry.inserted_at %>
+            </strong>
+          </small>
           <div>
             <%= get_title(entry) %>
           </div>
-        </td>
-
-        <td>
-          <span><%= link "Show", to: Routes.entry_path(@conn, :show, entry) %></span>
-          <span><%= link "Edit", to: Routes.entry_path(@conn, :edit, entry) %></span>
-          <span><%= link "Delete", to: Routes.entry_path(@conn, :delete, entry), method: :delete, data: [confirm: "Are you sure?"] %></span>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </a>
+      </div>
+      <div>
+        <%= link "Edit", to: Routes.entry_path(@conn, :edit, entry) %> |
+        <%= link "Delete", to: Routes.entry_path(@conn, :delete, entry), method: :delete, data: [confirm: "Are you sure?"] %>
+      </div>
+    </div>
+  <% end %>
+</div>

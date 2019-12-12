@@ -78,3 +78,11 @@ td, th, .list-row {
 .ml-1 {
   margin-left: 1em;
 }
+
+.hidden-links a {
+  color: #e6c2de;
+}
+
+.hidden-links a:hover div {
+  background: #3d3942;
+}
