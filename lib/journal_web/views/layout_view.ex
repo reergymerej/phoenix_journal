@@ -16,6 +16,10 @@ defmodule JournalWeb.LayoutView do
         :href => Routes.change_path(conn, :index),
       },
       %{
+        :label => "Questions",
+        :href => Routes.question_path(conn, :index),
+      },
+      %{
         :label => "Login/Logout",
         :href => Routes.session_path(conn, :new),
       },
