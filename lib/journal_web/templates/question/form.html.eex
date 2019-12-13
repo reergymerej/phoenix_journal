@@ -10,7 +10,7 @@
   <%= error_tag f, :text %>
 
   <%= label f, :answer %>
-  <%= textarea f, :answer, class: "tall-textarea" %>
+  <%= textarea f, :answer, class: "mono tall-textarea" %>
   <%= error_tag f, :answer %>
 
   <div>
