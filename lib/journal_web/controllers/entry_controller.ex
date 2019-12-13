@@ -24,7 +24,7 @@ defmodule JournalWeb.EntryController do
       {:ok, entry} ->
         conn
         |> put_flash(:info, "Entry created successfully.")
-        |> render("new.html", changeset: Entry.changeset(entry, entry_params))
+        |> redirect(to: Routes.entry_path(conn, :edit, entry))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
