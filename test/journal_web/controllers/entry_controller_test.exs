@@ -31,7 +31,7 @@ defmodule JournalWeb.EntryControllerTest do
       conn = post(conn, Routes.entry_path(conn, :create), entry: @create_attrs)
 
       assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == Routes.entry_path(conn, :show, id)
+      assert redirected_to(conn) == Routes.entry_path(conn, :edit, id)
 
       conn = get(conn, Routes.entry_path(conn, :show, id))
       assert html_response(conn, 200) =~ "some title"
@@ -57,9 +57,6 @@ defmodule JournalWeb.EntryControllerTest do
 
     test "redirects when data is valid", %{conn: conn, entry: entry} do
       conn = put(conn, Routes.entry_path(conn, :update, entry), entry: @update_attrs)
-      assert redirected_to(conn) == Routes.entry_path(conn, :show, entry)
-
-      conn = get(conn, Routes.entry_path(conn, :show, entry))
       assert html_response(conn, 200) =~ "some updated text"
     end
 
