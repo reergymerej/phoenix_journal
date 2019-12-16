@@ -43,7 +43,8 @@ defmodule Journal.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:mix_test_watch, "~> 1.0", only: :dev}
+      {:mix_test_watch, "~> 1.0", only: :dev},
+      {:number, "~> 1.0"}
     ]
   end
 

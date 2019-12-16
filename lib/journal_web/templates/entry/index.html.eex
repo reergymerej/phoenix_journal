@@ -16,7 +16,7 @@
             <%= get_title(entry) %>
           </div>
           <small>
-            <%= entry.char_count %> chars
+            <%= get_count(entry.char_count) %> chars
           </small>
         </a>
       </div>

@@ -11,6 +11,10 @@ defmodule JournalWeb.EntryView do
     end
   end
 
+  def get_count(char_count) do
+    Number.Delimit.number_to_delimited(char_count, precision: 0)
+  end
+
   defp trunc(string, max) do
     if (String.length(string) < max)do
       string
