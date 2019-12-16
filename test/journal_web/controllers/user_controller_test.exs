@@ -3,7 +3,11 @@ defmodule JournalWeb.UserControllerTest do
 
   alias Journal.Accounts
 
-  @create_attrs %{name: "some name", username: "some username"}
+  @create_attrs %{
+    name: "some name",
+    username: "some username",
+    credential: %{email: "foo@boo.com"}
+  }
   @update_attrs %{name: "some updated name", username: "some updated username"}
   @invalid_attrs %{name: nil, username: nil}
 

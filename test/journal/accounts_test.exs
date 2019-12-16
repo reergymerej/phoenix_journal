@@ -6,7 +6,13 @@ defmodule Journal.AccountsTest do
   describe "users" do
     alias Journal.Accounts.User
 
-    @valid_attrs %{name: "some name", username: "some username"}
+    @valid_attrs %{
+      name: "some name",
+      username: "some username",
+      credential: %{
+        email: "bingo@bango.com"
+      }
+    }
     @update_attrs %{name: "some updated name", username: "some updated username"}
     @invalid_attrs %{name: nil, username: nil}
 
@@ -67,17 +73,21 @@ defmodule Journal.AccountsTest do
   describe "credentials" do
     alias Journal.Accounts.Credential
 
-    @valid_attrs %{email: "some email"}
+    @valid_attrs %{ email: "some email" }
+    @valid_user_attrs %{
+      name: "some name",
+      username: "some username",
+    }
     @update_attrs %{email: "some updated email"}
     @invalid_attrs %{email: nil}
 
     def credential_fixture(attrs \\ %{}) do
-      {:ok, credential} =
-        attrs
-        |> Enum.into(@valid_attrs)
-        |> Accounts.create_credential()
+      {:ok, user} =
+        @valid_user_attrs
+        |> Enum.into(%{credential: @valid_attrs})
+        |> Accounts.create_user()
 
-      credential
+      user.credential
     end
 
     test "list_credentials/0 returns all credentials" do
@@ -88,11 +98,6 @@ defmodule Journal.AccountsTest do
     test "get_credential!/1 returns the credential with given id" do
       credential = credential_fixture()
       assert Accounts.get_credential!(credential.id) == credential
-    end
-
-    test "create_credential/1 with valid data creates a credential" do
-      assert {:ok, %Credential{} = credential} = Accounts.create_credential(@valid_attrs)
-      assert credential.email == "some email"
     end
 
     test "create_credential/1 with invalid data returns error changeset" do
