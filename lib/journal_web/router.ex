@@ -19,23 +19,25 @@ defmodule JournalWeb.Router do
 
     get "/", PageController, :index
     resources "/entries", EntryController
-    resources "/changes", ChangeController
+    resources "/changes", ChangeController do
+      post "/top", ChangeController, :top, as: "top"
+    end
     resources "/users", UserController
     resources "/sessions", SessionController, only: [:new, :create, :delete], singleton: true
     resources "/questions", QuestionController
   end
 
-  defp authenticate_user(conn, _) do
-    case get_session(conn, :user_id) do
-      nil ->
-        conn
-        |> Phoenix.Controller.put_flash(:error, "login first")
-        |> Phoenix.Controller.redirect(to: "/")
-        |> halt()
-      user_id ->
-        assign(conn, :current_user, Journal.Accounts.get_user!(user_id))
-    end
-  end
+  # defp authenticate_user(conn, _) do
+  #   case get_session(conn, :user_id) do
+  #     nil ->
+  #       conn
+  #       |> Phoenix.Controller.put_flash(:error, "login first")
+  #       |> Phoenix.Controller.redirect(to: "/")
+  #       |> halt()
+  #     user_id ->
+  #       assign(conn, :current_user, Journal.Accounts.get_user!(user_id))
+  #   end
+  # end
 
   defp fetch_user(conn, _) do
     case get_session(conn, :user_id) do

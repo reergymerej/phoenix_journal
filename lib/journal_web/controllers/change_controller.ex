@@ -63,9 +63,15 @@ defmodule JournalWeb.ChangeController do
     |> redirect(to: Routes.change_path(conn, :index))
   end
 
-  def create_entry(conn, text) do
-    IO.puts "hello"
+  def create_entry(conn, _text) do
     changeset = Votes.change_change(%Change{})
     render(conn, "new.html", changeset: changeset)
+  end
+
+  def top(conn, %{"change_id" => change_id}) do
+
+    conn
+    |> put_flash(:info, "So you want #{change_id} to go on top.")
+    |> redirect(to: Routes.change_path(conn, :index))
   end
 end

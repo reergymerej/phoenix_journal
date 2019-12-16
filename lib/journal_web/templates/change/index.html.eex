@@ -19,6 +19,9 @@
         <%= link "Create Entry",
           to: Routes.entry_path(@conn, :new, "text": change.text)
         %>
+      </span> |
+      <span>
+        <%= link "Top", to: Routes.change_top_path(@conn, :top, change.id), method: :post %>
       </span>
     </div>
   </div>
