@@ -78,6 +78,16 @@ defmodule Journal.Votes do
   end
 
   @doc """
+  Touches a change, modifying only the updated_at field.
+  """
+
+  def touch_change(%Change{} = change) do
+    change
+    |> Change.changeset(%{})
+    |> Repo.update([force: true])
+  end
+
+  @doc """
   Deletes a Change.
 
   ## Examples

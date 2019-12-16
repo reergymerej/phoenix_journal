@@ -69,9 +69,11 @@ defmodule JournalWeb.ChangeController do
   end
 
   def top(conn, %{"change_id" => change_id}) do
+    change = Votes.get_change!(change_id)
+    Votes.touch_change(change)
 
     conn
-    |> put_flash(:info, "So you want #{change_id} to go on top.")
+    |> put_flash(:info, "#{change_id} is now our top priority, boss.")
     |> redirect(to: Routes.change_path(conn, :index))
   end
 end
