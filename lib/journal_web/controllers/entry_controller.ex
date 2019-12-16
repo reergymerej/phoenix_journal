@@ -6,7 +6,20 @@ defmodule JournalWeb.EntryController do
 
   def index(conn, _params) do
     entries = Entries.list_entries()
+              |> add_char_count()
+    IO.inspect entries
     render(conn, "index.html", entries: entries)
+  end
+
+  defp add_char_count(list) do
+    list
+    |> Enum.map(&add_char_count_value/1)
+  end
+
+  defp add_char_count_value(entry) do
+    char_count = String.length(entry.text)
+    entry
+    |> Map.put(:char_count, char_count)
   end
 
   def new(conn, %{"text" => title}) do
