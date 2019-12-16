@@ -7,7 +7,6 @@ defmodule JournalWeb.EntryController do
   def index(conn, _params) do
     entries = Entries.list_entries()
               |> add_char_count()
-    IO.inspect entries
     render(conn, "index.html", entries: entries)
   end
 
