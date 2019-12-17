@@ -22,7 +22,7 @@ defmodule JournalWeb.Router do
     resources "/changes", ChangeController do
       post "/top", ChangeController, :top, as: "top"
     end
-    resources "/users", UserController
+    resources "/users", UserController, except: [:index]
     resources "/sessions", SessionController, only: [:new, :create, :delete], singleton: true
     resources "/questions", QuestionController
   end

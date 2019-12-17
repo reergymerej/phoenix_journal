@@ -18,8 +18,9 @@ defmodule JournalWeb.UserControllerTest do
 
   describe "index" do
     test "lists all users", %{conn: conn} do
-      conn = get(conn, Routes.user_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Users"
+      assert_raise Phoenix.Router.NoRouteError, fn ->
+        get(conn, "/users")
+      end
     end
   end
 
@@ -78,7 +79,6 @@ defmodule JournalWeb.UserControllerTest do
 
     test "deletes chosen user", %{conn: conn, user: user} do
       conn = delete(conn, Routes.user_path(conn, :delete, user))
-      assert redirected_to(conn) == Routes.user_path(conn, :index)
       assert_error_sent 404, fn ->
         get(conn, Routes.user_path(conn, :show, user))
       end
