@@ -81,7 +81,7 @@ defmodule Journal.AccountsTest do
     @update_attrs %{email: "some updated email"}
     @invalid_attrs %{email: nil}
 
-    def credential_fixture(attrs \\ %{}) do
+    def credential_fixture(_attrs \\ %{}) do
       {:ok, user} =
         @valid_user_attrs
         |> Enum.into(%{credential: @valid_attrs})
