@@ -71,10 +71,7 @@ defmodule JournalWeb.EntryControllerTest do
 
     test "deletes chosen entry", %{conn: conn, entry: entry} do
       conn = delete(conn, Routes.entry_path(conn, :delete, entry))
-      assert redirected_to(conn) == Routes.entry_path(conn, :index)
-      assert_error_sent 404, fn ->
-        get(conn, Routes.entry_path(conn, :show, entry))
-      end
+      assert html_response(conn, 200) =~ "Only users"
     end
   end
 

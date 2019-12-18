@@ -69,11 +69,18 @@ defmodule JournalWeb.EntryController do
   end
 
   def delete(conn, %{"id" => id}) do
-    entry = Entries.get_entry!(id)
-    {:ok, _entry} = Entries.delete_entry(entry)
+    current_user = conn.assigns.current_user
+    if current_user == nil do
+      conn
+      |> put_flash(:error, "Only users can do that.")
+      |> show(%{"id" => id})
+    else
+      entry = Entries.get_entry!(id)
+      {:ok, _entry} = Entries.delete_entry(entry)
 
-    conn
-    |> put_flash(:info, "Entry deleted successfully.")
-    |> redirect(to: Routes.entry_path(conn, :index))
+      conn
+      |> put_flash(:info, "Entry deleted successfully.")
+      |> redirect(to: Routes.entry_path(conn, :index))
+    end
   end
 end
