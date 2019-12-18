@@ -3,12 +3,14 @@ defmodule JournalWeb.ChangeController do
 
   alias Journal.Votes
   alias Journal.Votes.Change
+  alias JournalWeb.Controllers.Helpers
 
   def index(conn, _params) do
     changes = Votes.list_changes()
     render(conn, "index.html",
       changes: changes,
-      count: length changes
+      count: (length changes),
+      can_modify: Helpers.can_modify(conn)
     )
   end
 
@@ -61,11 +63,6 @@ defmodule JournalWeb.ChangeController do
     conn
     |> put_flash(:info, "Change deleted successfully.")
     |> redirect(to: Routes.change_path(conn, :index))
-  end
-
-  def create_entry(conn, _text) do
-    changeset = Votes.change_change(%Change{})
-    render(conn, "new.html", changeset: changeset)
   end
 
   def top(conn, %{"change_id" => change_id}) do

@@ -14,12 +14,14 @@
     <div class="ml-1">
       <span><%= link "Show", to: Routes.change_path(@conn, :show, change) %></span> |
       <span><%= link "Edit", to: Routes.change_path(@conn, :edit, change) %></span> |
-      <span><%= link "Delete", to: Routes.change_path(@conn, :delete, change), method: :delete, data: [confirm: "Are you sure?"] %></span> |
-      <span>
-        <%= link "Create Entry",
-          to: Routes.entry_path(@conn, :new, "text": change.text)
+      <span><%= link "Delete", to: Routes.change_path(@conn, :delete, change), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      <%= if @can_modify do %> |
+        <span>
+          <%= link "Create Entry",
+to: Routes.entry_path(@conn, :new, "text": change.text)
         %>
-      </span> |
+        </span>
+      <% end %>|
       <span>
         <%= link "Top", to: Routes.change_top_path(@conn, :top, change.id), method: :post %>
       </span>
