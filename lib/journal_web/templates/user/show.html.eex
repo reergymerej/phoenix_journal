@@ -1,22 +1,23 @@
-<h1>Show User</h1>
+<h2>
+  <%= @user.username %>
+</h2>
 
-<ul>
+<div>
+  <div>
+    aka:
+    <strong>
+      <%= @user.name %>
+    </strong>
+  </div>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @user.name %>
-  </li>
-
-  <li>
-    <strong>Username:</strong>
-    <%= @user.username %>
-  </li>
-
-  <li>
-    <strong>Email:</strong>
+  <div>
     <%= @user.credential.email %>
-  </li>
+  </div>
+</div>
 
-</ul>
 
 <span><%= link "Edit", to: Routes.user_path(@conn, :edit, @user) %></span>
+
+<%= form_for @conn, Routes.session_path(@conn, :delete), [method: :delete, as: :user], fn _ -> %>
+  <%= submit "logout" %>
+<% end %>

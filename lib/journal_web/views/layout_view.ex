@@ -19,10 +19,6 @@ defmodule JournalWeb.LayoutView do
         :label => "Questions",
         :href => Routes.question_path(conn, :index),
       },
-      %{
-        :label => "Login/Logout",
-        :href => Routes.session_path(conn, :new),
-      },
     ]
 
     add_optional(conn, links)
@@ -37,7 +33,12 @@ defmodule JournalWeb.LayoutView do
         }
       ]
     else
-      links
+      links ++ [
+        %{
+          :label => "Login",
+          :href => Routes.session_path(conn, :new),
+        }
+      ]
     end
   end
 end
