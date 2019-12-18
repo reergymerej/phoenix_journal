@@ -32,14 +32,18 @@ defmodule JournalWeb.EntryController do
   end
 
   def create(conn, %{"entry" => entry_params}) do
-    case Entries.create_entry(entry_params) do
-      {:ok, entry} ->
-        conn
-        |> put_flash(:info, "Entry created successfully.")
-        |> redirect(to: Routes.entry_path(conn, :edit, entry))
+    if can_modify(conn) do
+      case Entries.create_entry(entry_params) do
+        {:ok, entry} ->
+          conn
+          |> put_flash(:info, "Entry created successfully.")
+          |> redirect(to: Routes.entry_path(conn, :edit, entry))
 
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        {:error, %Ecto.Changeset{} = changeset} ->
+          render(conn, "new.html", changeset: changeset)
+      end
+    else
+        restriction_warning(conn)
     end
   end
 
