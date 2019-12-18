@@ -3,11 +3,15 @@ defmodule JournalWeb.EntryController do
 
   alias Journal.Entries
   alias Journal.Entries.Entry
+  alias JournalWeb.Controllers.Helpers
 
   def index(conn, _params) do
     entries = Entries.list_entries()
               |> add_char_count()
-    render(conn, "index.html", entries: entries)
+    render(conn, "index.html",
+      entries: entries,
+      can_modify: Helpers.can_modify(conn)
+    )
   end
 
   defp add_char_count(list) do
@@ -27,16 +31,16 @@ defmodule JournalWeb.EntryController do
   end
 
   def new(conn, _params) do
-    if can_modify(conn) do
+    if Helpers.can_modify(conn) do
       changeset = Entries.change_entry(%Entry{})
       render(conn, "new.html", changeset: changeset)
     else
-      restriction_warning(conn)
+      Helpers.restriction_warning(conn)
     end
   end
 
   def create(conn, %{"entry" => entry_params}) do
-    if can_modify(conn) do
+    if Helpers.can_modify(conn) do
       case Entries.create_entry(entry_params) do
         {:ok, entry} ->
           conn
@@ -47,7 +51,7 @@ defmodule JournalWeb.EntryController do
           render(conn, "new.html", changeset: changeset)
       end
     else
-        restriction_warning(conn)
+        Helpers.restriction_warning(conn)
     end
   end
 
@@ -55,12 +59,12 @@ defmodule JournalWeb.EntryController do
     entry = Entries.get_entry!(id)
     render(conn, "show.html",
       entry: entry,
-      can_modify: can_modify(conn)
+      can_modify: Helpers.can_modify(conn)
     )
   end
 
   def edit(conn, %{"id" => id}) do
-    if can_modify(conn) do
+    if Helpers.can_modify(conn) do
       entry = Entries.get_entry!(id)
       changeset = Entries.change_entry(entry)
       render(conn, "edit.html",
@@ -68,12 +72,12 @@ defmodule JournalWeb.EntryController do
         changeset: changeset
       )
     else
-      restriction_warning(conn)
+      Helpers.restriction_warning(conn)
     end
   end
 
   def update(conn, %{"id" => id, "entry" => entry_params}) do
-    if can_modify(conn) do
+    if Helpers.can_modify(conn) do
       entry = Entries.get_entry!(id)
       case Entries.update_entry(entry, entry_params) do
         {:ok, entry} ->
@@ -85,12 +89,12 @@ defmodule JournalWeb.EntryController do
           render(conn, "edit.html", entry: entry, changeset: changeset)
       end
     else
-      restriction_warning(conn)
+      Helpers.restriction_warning(conn)
     end
   end
 
   def delete(conn, %{"id" => id}) do
-    if can_modify(conn) do
+    if Helpers.can_modify(conn) do
       entry = Entries.get_entry!(id)
       {:ok, _entry} = Entries.delete_entry(entry)
 
@@ -98,21 +102,7 @@ defmodule JournalWeb.EntryController do
       |> put_flash(:info, "Entry deleted successfully.")
       |> redirect(to: Routes.entry_path(conn, :index))
     else
-      restriction_warning(conn)
+      Helpers.restriction_warning(conn)
     end
-  end
-
-  defp restriction_warning(conn) do
-    conn
-    |> put_flash(:error, "Only users can do that.")
-    |> redirect(to: Routes.session_path(conn, :new))
-  end
-
-  defp get_current_user(conn) do
-    conn.assigns.current_user
-  end
-
-  defp can_modify(conn) do
-    get_current_user(conn) != nil
   end
 end

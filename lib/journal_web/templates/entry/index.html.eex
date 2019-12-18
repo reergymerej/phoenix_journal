@@ -1,6 +1,8 @@
 <h1>Entries</h1>
 
-<span><%= link "New Entry", to: Routes.entry_path(@conn, :new) %></span>
+<%= if @can_modify do %>
+  <span><%= link "New Entry", to: Routes.entry_path(@conn, :new) %></span>
+<% end %>
 
 <div>
   <%= for entry <- @entries do %>
