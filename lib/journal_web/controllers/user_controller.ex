@@ -19,6 +19,7 @@ defmodule JournalWeb.UserController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User created successfully.")
+        |> JournalWeb.SessionController.start_user_session(user)
         |> redirect(to: Routes.user_path(conn, :show, user))
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -26,9 +27,27 @@ defmodule JournalWeb.UserController do
     end
   end
 
+  defp kick_out(conn) do
+    conn
+    |> put_flash(:error, "Get out of here, you scoundrel.")
+    |> redirect(to: Routes.page_path(conn, :index))
+  end
+
   def show(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
-    render(conn, "show.html", user: user)
+    current_user = conn.assigns.current_user
+    if current_user == nil do
+      kick_out(conn)
+    else
+
+      current_user_id = current_user.id
+      case Integer.parse(id) do
+        {^current_user_id, _} ->
+          user = Accounts.get_user!(id)
+          render(conn, "show.html", user: user)
+        _ ->
+          kick_out(conn)
+      end
+    end
   end
 
   def edit(conn, %{"id" => id}) do

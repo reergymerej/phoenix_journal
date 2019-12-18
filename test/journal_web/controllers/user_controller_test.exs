@@ -65,7 +65,7 @@ defmodule JournalWeb.UserControllerTest do
       assert redirected_to(conn) == Routes.user_path(conn, :show, user)
 
       conn = get(conn, Routes.user_path(conn, :show, user))
-      assert html_response(conn, 200) =~ "some updated name"
+      assert redirected_to(conn) == Routes.page_path(conn, :index)
     end
 
     test "renders errors when data is invalid", %{conn: conn, user: user} do
@@ -78,10 +78,10 @@ defmodule JournalWeb.UserControllerTest do
     setup [:create_user]
 
     test "deletes chosen user", %{conn: conn, user: user} do
-      conn = delete(conn, Routes.user_path(conn, :delete, user))
-      assert_error_sent 404, fn ->
-        get(conn, Routes.user_path(conn, :show, user))
-      end
+      conn = conn
+             |> delete(Routes.user_path(conn, :delete, user))
+             |> get(Routes.user_path(conn, :show, user))
+      assert redirected_to(conn) == Routes.page_path(conn, :index)
     end
   end
 
