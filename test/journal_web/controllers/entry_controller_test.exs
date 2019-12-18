@@ -48,7 +48,8 @@ defmodule JournalWeb.EntryControllerTest do
 
     test "renders form for editing chosen entry", %{conn: conn, entry: entry} do
       conn = get(conn, Routes.entry_path(conn, :edit, entry))
-      assert html_response(conn, 200) =~ "Edit Entry"
+      # not authorized
+      assert redirected_to(conn) == Routes.session_path(conn, :new)
     end
   end
 
@@ -57,12 +58,14 @@ defmodule JournalWeb.EntryControllerTest do
 
     test "redirects when data is valid", %{conn: conn, entry: entry} do
       conn = put(conn, Routes.entry_path(conn, :update, entry), entry: @update_attrs)
-      assert html_response(conn, 200) =~ "Only users"
+      # not authorized
+      assert redirected_to(conn) == Routes.session_path(conn, :new)
     end
 
     test "renders errors when data is invalid", %{conn: conn, entry: entry} do
       conn = put(conn, Routes.entry_path(conn, :update, entry), entry: @invalid_attrs)
-      assert html_response(conn, 200) =~ "Edit Entry"
+      # not authorized
+      assert redirected_to(conn) == Routes.session_path(conn, :new)
     end
   end
 
@@ -71,7 +74,8 @@ defmodule JournalWeb.EntryControllerTest do
 
     test "deletes chosen entry", %{conn: conn, entry: entry} do
       conn = delete(conn, Routes.entry_path(conn, :delete, entry))
-      assert html_response(conn, 200) =~ "Only users"
+      # not authorized
+      assert redirected_to(conn) == Routes.session_path(conn, :new)
     end
   end
 

@@ -3,10 +3,12 @@
 </h1>
 
 <div>
-  <%= link "List", to: Routes.entry_path(@conn, :index) %> |
-  <%= link "Edit", to: Routes.entry_path(@conn, :edit, @entry) %> |
-  <%= link "Delete", to: Routes.entry_path(@conn, :delete, @entry), method: :delete, data: [confirm: "Are you sure?"] %> |
-  <%= link "New", to: Routes.entry_path(@conn, :new) %>
+  <%= link "List", to: Routes.entry_path(@conn, :index) %>
+  <%= if @can_modify do %> |
+    <%= link "Edit", to: Routes.entry_path(@conn, :edit, @entry) %> |
+    <%= link "Delete", to: Routes.entry_path(@conn, :delete, @entry), method: :delete, data: [confirm: "Are you sure?"] %> |
+    <%= link "New", to: Routes.entry_path(@conn, :new) %>
+  <% end %>
 </div>
 
 <div class="pre mono">

@@ -45,25 +45,28 @@ defmodule JournalWeb.EntryController do
 
   def show(conn, %{"id" => id}) do
     entry = Entries.get_entry!(id)
-    render(conn, "show.html", entry: entry)
+    render(conn, "show.html",
+      entry: entry,
+      can_modify: can_modify(conn)
+    )
   end
 
   def edit(conn, %{"id" => id}) do
-    entry = Entries.get_entry!(id)
-    changeset = Entries.change_entry(entry)
-    render(conn, "edit.html", entry: entry, changeset: changeset)
+    if can_modify(conn) do
+      entry = Entries.get_entry!(id)
+      changeset = Entries.change_entry(entry)
+      render(conn, "edit.html",
+        entry: entry,
+        changeset: changeset
+      )
+    else
+      restriction_warning(conn)
+    end
   end
 
   def update(conn, %{"id" => id, "entry" => entry_params}) do
-    current_user = get_current_user(conn)
-    if current_user == nil do
-      conn
-      |> restriction_warning()
-      |> edit(%{"id" => id})
-
-    else
+    if can_modify(conn) do
       entry = Entries.get_entry!(id)
-
       case Entries.update_entry(entry, entry_params) do
         {:ok, entry} ->
           conn
@@ -73,30 +76,35 @@ defmodule JournalWeb.EntryController do
         {:error, %Ecto.Changeset{} = changeset} ->
           render(conn, "edit.html", entry: entry, changeset: changeset)
       end
+    else
+      restriction_warning(conn)
     end
   end
 
-  defp restriction_warning(conn) do
-    put_flash(conn, :error, "Only users can do that.")
-  end
-
-  defp get_current_user(conn) do
-    conn.assigns.current_user
-  end
-
   def delete(conn, %{"id" => id}) do
-    current_user = get_current_user(conn)
-    if current_user == nil do
-      conn
-      |> restriction_warning()
-      |> show(%{"id" => id})
-    else
+    if can_modify(conn) do
       entry = Entries.get_entry!(id)
       {:ok, _entry} = Entries.delete_entry(entry)
 
       conn
       |> put_flash(:info, "Entry deleted successfully.")
       |> redirect(to: Routes.entry_path(conn, :index))
+    else
+      restriction_warning(conn)
     end
+  end
+
+  defp restriction_warning(conn) do
+    conn
+    |> put_flash(:error, "Only users can do that.")
+    |> redirect(to: Routes.session_path(conn, :new))
+  end
+
+  defp get_current_user(conn) do
+    conn.assigns.current_user
+  end
+
+  defp can_modify(conn) do
+    get_current_user(conn) != nil
   end
 end
