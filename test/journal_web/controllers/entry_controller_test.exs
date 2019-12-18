@@ -22,7 +22,9 @@ defmodule JournalWeb.EntryControllerTest do
   describe "new entry" do
     test "renders form", %{conn: conn} do
       conn = get(conn, Routes.entry_path(conn, :new))
-      assert html_response(conn, 200) =~ "New Entry"
+      # not authorized
+      assert redirected_to(conn) == Routes.session_path(conn, :new)
+      # assert html_response(conn, 200) =~ "New Entry"
     end
   end
 

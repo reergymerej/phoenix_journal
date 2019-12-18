@@ -27,8 +27,12 @@ defmodule JournalWeb.EntryController do
   end
 
   def new(conn, _params) do
-    changeset = Entries.change_entry(%Entry{})
-    render(conn, "new.html", changeset: changeset)
+    if can_modify(conn) do
+      changeset = Entries.change_entry(%Entry{})
+      render(conn, "new.html", changeset: changeset)
+    else
+      restriction_warning(conn)
+    end
   end
 
   def create(conn, %{"entry" => entry_params}) do
