@@ -57,7 +57,7 @@ defmodule JournalWeb.EntryControllerTest do
 
     test "redirects when data is valid", %{conn: conn, entry: entry} do
       conn = put(conn, Routes.entry_path(conn, :update, entry), entry: @update_attrs)
-      assert html_response(conn, 200) =~ "some updated text"
+      assert html_response(conn, 200) =~ "Only users"
     end
 
     test "renders errors when data is invalid", %{conn: conn, entry: entry} do

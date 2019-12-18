@@ -55,24 +55,40 @@ defmodule JournalWeb.EntryController do
   end
 
   def update(conn, %{"id" => id, "entry" => entry_params}) do
-    entry = Entries.get_entry!(id)
+    current_user = get_current_user(conn)
+    if current_user == nil do
+      conn
+      |> restriction_warning()
+      |> edit(%{"id" => id})
 
-    case Entries.update_entry(entry, entry_params) do
-      {:ok, entry} ->
-        conn
-        |> put_flash(:info, "Entry updated successfully.")
-        |> render("edit.html", entry: entry, changeset: Entry.changeset(entry, entry_params))
+    else
+      entry = Entries.get_entry!(id)
 
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", entry: entry, changeset: changeset)
+      case Entries.update_entry(entry, entry_params) do
+        {:ok, entry} ->
+          conn
+          |> put_flash(:info, "Entry updated successfully.")
+          |> render("edit.html", entry: entry, changeset: Entry.changeset(entry, entry_params))
+
+        {:error, %Ecto.Changeset{} = changeset} ->
+          render(conn, "edit.html", entry: entry, changeset: changeset)
+      end
     end
   end
 
+  defp restriction_warning(conn) do
+    put_flash(conn, :error, "Only users can do that.")
+  end
+
+  defp get_current_user(conn) do
+    conn.assigns.current_user
+  end
+
   def delete(conn, %{"id" => id}) do
-    current_user = conn.assigns.current_user
+    current_user = get_current_user(conn)
     if current_user == nil do
       conn
-      |> put_flash(:error, "Only users can do that.")
+      |> restriction_warning()
       |> show(%{"id" => id})
     else
       entry = Entries.get_entry!(id)
