@@ -2,7 +2,7 @@ defmodule JournalWeb.LayoutView do
   use JournalWeb, :view
 
   def get_nav(conn) do
-    [
+    links = [
       %{
         :label => "Home",
         :href => Routes.page_path(conn, :index)
@@ -24,5 +24,20 @@ defmodule JournalWeb.LayoutView do
         :href => Routes.session_path(conn, :new),
       },
     ]
+
+    add_optional(conn, links)
+  end
+
+  defp add_optional(conn, links) do
+    if current_user = conn.assigns.current_user do
+      links ++ [
+        %{
+          :label => "Your User",
+          :href => Routes.user_path(conn, :show, current_user),
+        }
+      ]
+    else
+      links
+    end
   end
 end
