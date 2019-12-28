@@ -22,7 +22,7 @@ defmodule JournalWeb.SessionController do
       {:error, :unauthorized} ->
         conn
         |> put_flash(:error, "bad combo")
-        |> redirect(to: Routes.session_path(conn, :new))
+        |> new(%{})
     end
   end
 

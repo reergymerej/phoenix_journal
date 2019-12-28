@@ -3,6 +3,7 @@ defmodule JournalWeb.UserController do
 
   alias Journal.Accounts
   alias Journal.Accounts.User
+  alias JournalWeb.Controllers.Helpers
 
   def index(conn, _params) do
     users = Accounts.list_users()
@@ -28,25 +29,30 @@ defmodule JournalWeb.UserController do
   end
 
   defp kick_out(conn) do
-    conn
-    |> put_flash(:error, "Get out of here, you scoundrel.")
-    |> redirect(to: Routes.page_path(conn, :index))
+    Helpers.restriction_warning(conn)
+  end
+
+  defp current_user_id_matches(nil, _id) do
+    false
+  end
+
+  defp current_user_id_matches(current_user, id) do
+    current_user_id = current_user.id
+    case Integer.parse(id) do
+      {^current_user_id, _} ->
+        true
+      _ ->
+        false
+    end
   end
 
   def show(conn, %{"id" => id}) do
-    current_user = conn.assigns.current_user
-    if current_user == nil do
-      kick_out(conn)
+    ok = current_user_id_matches(conn.assigns.current_user, id)
+    if ok do
+      user = Accounts.get_user!(id)
+      render(conn, "show.html", user: user)
     else
-
-      current_user_id = current_user.id
-      case Integer.parse(id) do
-        {^current_user_id, _} ->
-          user = Accounts.get_user!(id)
-          render(conn, "show.html", user: user)
-        _ ->
-          kick_out(conn)
-      end
+      kick_out(conn)
     end
   end
 

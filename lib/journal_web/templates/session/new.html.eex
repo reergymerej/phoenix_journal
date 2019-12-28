@@ -1,5 +1,17 @@
-<%= form_for @conn, Routes.session_path(@conn, :create), [method: :post, as: :user], fn f -> %>
-  <%= text_input f, :email, placeholder: "email" %>
-  <%= password_input f, :password, placeholder: "password" %>
+<%= form_for @conn,
+  Routes.session_path(@conn, :create),
+  [method: :post, as: :user],
+  fn f -> %>
+  <%=
+    text_input f,
+    :email,
+    placeholder: "email",
+    autofocus: has_value(@conn, :email)
+  %>
+  <%= password_input f,
+    :password,
+    placeholder: "password",
+    autofocus: has_value(@conn, :password)
+  %>
   <%= submit "login" %>
 <% end %>
