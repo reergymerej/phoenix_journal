@@ -5,15 +5,11 @@
   <%=
     text_input f,
     :email,
-    placeholder: "email",
-    autofocus: !has_value(@conn, "email"),
-    value: get_value(@conn, "email")
+    get_field_props(@conn, "email")
   %>
   <%= password_input f,
     :password,
-    placeholder: "password",
-    autofocus: !has_value(@conn, "password"),
-    value: get_value(@conn, "password")
+    get_field_props(@conn, "password")
   %>
   <%= submit "login" %>
 <% end %>
