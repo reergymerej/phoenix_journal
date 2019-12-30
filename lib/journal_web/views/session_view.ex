@@ -11,6 +11,10 @@ defmodule JournalWeb.SessionView do
   end
 
   def has_value(data_source, name) do
-    get_value(data_source, name) != ""
+    case get_value(data_source, name) do
+      "" -> false
+      nil -> false
+      _ -> true
+    end
   end
 end
