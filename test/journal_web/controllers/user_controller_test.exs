@@ -61,11 +61,17 @@ defmodule JournalWeb.UserControllerTest do
     setup [:create_user]
 
     test "redirects when data is valid", %{conn: conn, user: user} do
+      # put new user info
       conn = put(conn, Routes.user_path(conn, :update, user), user: @update_attrs)
+      # verify we got redirected to the new user
       assert redirected_to(conn) == Routes.user_path(conn, :show, user)
 
+      # get the user
       conn = get(conn, Routes.user_path(conn, :show, user))
-      assert redirected_to(conn) == Routes.page_path(conn, :index)
+      # check we were redirected to the index
+      # Nope, this doesn't happen.  We get redirected via our kickout helper to
+      # the login page, /sessions/new.
+      assert redirected_to(conn) == Routes.session_path(conn, :new)
     end
 
     test "renders errors when data is invalid", %{conn: conn, user: user} do
@@ -79,9 +85,12 @@ defmodule JournalWeb.UserControllerTest do
 
     test "deletes chosen user", %{conn: conn, user: user} do
       conn = conn
+      # delete him
              |> delete(Routes.user_path(conn, :delete, user))
+      # try to look at him
              |> get(Routes.user_path(conn, :show, user))
-      assert redirected_to(conn) == Routes.page_path(conn, :index)
+      # We got redirected
+      assert redirected_to(conn) == Routes.session_path(conn, :new)
     end
   end
 

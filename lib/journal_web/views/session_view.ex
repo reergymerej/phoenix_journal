@@ -5,13 +5,12 @@ defmodule JournalWeb.SessionView do
     conn.assigns[:current_user]
   end
 
+  def get_value(conn, user_value) do
+    user = conn.params["user"]
+    user[user_value]
+  end
+
   def has_value(data_source, name) do
-    user = data_source.params["user"]
-    IO.puts("checking it out")
-    IO.inspect(user)
-    IO.puts(name)
-    # RESUME - get this
-    IO.puts(user[name])
-    false
+    get_value(data_source, name) != ""
   end
 end
